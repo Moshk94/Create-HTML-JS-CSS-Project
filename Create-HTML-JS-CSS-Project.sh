@@ -33,5 +33,3 @@ cat >  ./"${PROJECT_NAME:-"New Project"}"/index.html << EOF
   </body>
 </html>
 EOF
-
-$SHELL
