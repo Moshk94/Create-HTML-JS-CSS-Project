@@ -2,20 +2,30 @@
 echo "Enter project name:"
 read PROJECT_NAME
 
-mkdir "$PROJECT_NAME"
-mkdir ./"$PROJECT_NAME"/js
-mkdir ./"$PROJECT_NAME"/css
+if [ -d ./"${PROJECT_NAME:-"New Project"}" ]
+  then
+    i=2
+    while [ -d ./"New Project (${i})" ]
+      do
+        i=$((i+1))
+      done
+    PROJECT_NAME="New Project (${i})"
+  fi
 
-touch ./"$PROJECT_NAME"/README.md
-touch ./"$PROJECT_NAME"/css/stylesheet.css
-touch ./"$PROJECT_NAME"/js/main.js
+mkdir "${PROJECT_NAME:-"New Project"}"
+mkdir ./"${PROJECT_NAME:-"New Project"}"/js
+mkdir ./"${PROJECT_NAME:-"New Project"}"/css
 
-cat >  ./"$PROJECT_NAME"/index.html << EOF
+touch ./"${PROJECT_NAME:-"New Project"}"/README.md
+touch ./"${PROJECT_NAME:-"New Project"}"/css/stylesheet.css
+touch ./"${PROJECT_NAME:-"New Project"}"/js/main.js
+
+cat >  ./"${PROJECT_NAME:-"New Project"}"/index.html << EOF
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>$PROJECT_NAME</title>
+    <title>${PROJECT_NAME:-"New Project"}</title>
   <link rel="stylesheet" href="./css/stylesheet.css" type="text/css">
   </head>
   <body>
@@ -23,3 +33,5 @@ cat >  ./"$PROJECT_NAME"/index.html << EOF
   </body>
 </html>
 EOF
+
+$SHELL
