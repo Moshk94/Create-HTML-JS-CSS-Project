@@ -5,11 +5,11 @@ read PROJECT_NAME
 if [ -d ./"${PROJECT_NAME:-"New Project"}" ]
   then
     i=2
-    while [ -d ./"New Project (${i})" ]
+    while [ -d ./"${PROJECT_NAME} (${i})" ]
       do
         i=$((i+1))
       done
-    PROJECT_NAME="New Project (${i})"
+    PROJECT_NAME="${PROJECT_NAME} (${i})"
   fi
 
 mkdir "${PROJECT_NAME:-"New Project"}"
